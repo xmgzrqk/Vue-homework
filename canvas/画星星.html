@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas</title>
+    <style>
+        canvas{
+            border: 1px solid green;
+            margin:100px;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="1000" height="600"></canvas>
+    <script>
+        let myCanvas = document.querySelector("canvas")
+
+        let ctx = myCanvas.getContext("2d");
+
+        // ctx.strokeStyle = "green";
+        // ctx.rect(100,100,200,200);
+        // ctx.stroke()
+
+        ctx.beginPath();
+        ctx.moveTo(300,100);
+        ctx.lineTo(250,200);
+        ctx.lineTo(150,200);
+        ctx.lineTo(220,280);
+        ctx.lineTo(180,400);
+        ctx.lineTo(300,320);
+        ctx.lineTo(420,400);
+        ctx.lineTo(380,280);
+        ctx.lineTo(450,200);
+        ctx.lineTo(350,200);
+        ctx.closePath();
+        ctx.strokeStyle = "red";
+        ctx.lineWidth = 10
+        ctx.lineJoin = "round"
+        ctx.stroke();
+
+
+        ctx.beginPath();
+        ctx.moveTo(700,100);
+        ctx.lineTo(650,200);
+        ctx.lineTo(550,200);
+        ctx.lineTo(620,280);
+        ctx.lineTo(580,400);
+        ctx.lineTo(700,320);
+        ctx.lineTo(820,400);
+        ctx.lineTo(780,280);
+        ctx.lineTo(850,200);
+        ctx.lineTo(750,200);
+        ctx.closePath();
+        ctx.fillStyle = "green";
+        ctx.fill()
+
+    </script>
+</body>
+</html>
