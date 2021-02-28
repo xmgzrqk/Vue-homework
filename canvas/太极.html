@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>太极</title>
+    <style>
+        canvas{
+            display: block;
+            border: 1px solid green;
+            margin: 100px auto;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="600"></canvas>
+    <script>
+        let canvas = document.querySelector("canvas");
+        let ctx = canvas.getContext("2d")
+
+        //大圆下半圆
+        ctx.beginPath();
+        ctx.arc(400,250,200,0,Math.PI,false);
+        ctx.closePath();
+        ctx.fill();
+        ctx.stroke();
+
+        //大圆上半圆
+        ctx.beginPath();
+        ctx.arc(400,250,200,0,Math.PI,true);
+        ctx.closePath();
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.stroke();
+
+        //里面的左半圆
+        ctx.beginPath();
+        ctx.arc(300,250,100,0,2*Math.PI,false);
+        ctx.fill();
+        ctx.strokeStyle = "white";
+        ctx.stroke();
+
+        //里面的右半圆
+        ctx.beginPath();
+        ctx.arc(500,250,100,0,Math.PI,true);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+
+        //两个鱼眼的左鱼眼
+        ctx.beginPath();
+        ctx.arc(300,250,25,0,2*Math.PI,true);
+        ctx.fillStyle = "black";
+        ctx.fill();
+        ctx.stroke();
+
+        //两个鱼眼的右鱼眼
+        ctx.beginPath();
+        ctx.arc(500,250,25,0,2*Math.PI,true);
+        ctx.fillStyle = "white";
+        ctx.fill();
+        ctx.stroke();
+    </script>
+</body>
+</html>
