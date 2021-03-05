@@ -22,12 +22,25 @@
             for (let i = 0;i < row;i++){
                 for (let j = 0;j < col;j++){
                     ctx.fillStyle = "rgb(" + Math.floor(255 - (255/row) * i) + ',' + Math.floor(255 - (255/col) * j) + ",0)"
-                    ctx.fillRect(i*50,j*50,50,50)
+                    ctx.fillRect(j*50,i*50,50,50)
                 }
             }
         }
 
         createColorBorad(10,10)
+
+        function createColorBoradArc(row,col){
+            for (let i = 0;i < row;i++){
+                for (let j = 0;j < col;j++){
+                    ctx.strokeStyle = "rgb(" + Math.floor(255 - (255/row) * i) + ',' + Math.floor(255 - (255/col) * j) + ",0)"
+                    ctx.beginPath()
+                    ctx.arc(25+i*50,25+j*50,20,0,2*Math.PI,false)
+                    ctx.stroke()
+                }
+            }
+        }
+
+        //createColorBoradArc(10,10)
     </script>
 </body>
 </html>
