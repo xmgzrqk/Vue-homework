@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动画移动</title>
+    <style>
+        canvas{
+            display: block;
+            margin: auto;
+            border: 1px solid red;
+        }
+    </style>
+</head>
+<body>
+    <canvas width="800" height="800"></canvas>
+    <script>
+        let canvas = document.querySelector("canvas")
+        let ctx = canvas.getContext("2d")
+        let y = 100
+
+        let timer = setInterval(function (){
+            ctx.beginPath();
+            ctx.fillStyle = "white";
+            ctx.fillRect(0,0,canvas.width,canvas.height);
+            ctx.fillStyle = "black";
+            ctx.arc(300,y++,50,0,2*Math.PI,false);
+            ctx.fill();
+            if(y > 900){
+                clearInterval(timer);
+                console.log("定时器已清除");
+            }
+        },1000/60)
+
+
+    </script>
+</body>
+</html>
