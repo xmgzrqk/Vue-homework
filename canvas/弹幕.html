@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>弹幕</title>
+    <style>
+        #spendText{
+            display: inline-block;
+            width: 300px;
+            height: 30px;
+        }
+        button{
+            display: inline-block;
+            width: 50px;
+            height: 30px;
+        }
+        span{
+            position: absolute;
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <video src="./律师侠.mp4" controls width="800" height="600"></video>
+        <!--<audio src="./白小白 - 爱不得忘不舍.mp3" controls></audio>-->
+    </div>
+    <div>
+        <input type="text" id = "spendText" placeholder="请输入弹幕">
+        <button>发送</button>
+    </div>
+    <script>
+        let video = document.querySelector("video");
+        let container =document.getElementsByClassName("container")[0]
+        console.log(container)
+        let sendText = document.querySelector("input")
+        let sendBtn = document.querySelector("button")
+
+        let random = function (start,end){
+            return Math.floor(Math.random() * (end-start+1)) +start
+        }
+
+        let run = function (){
+            let span = document.createElement("span");
+            span.innerHTML = sendText.value;
+            sendText.value = "";
+            let speed = random(2,3);
+            span.style.left = video.width + "px";
+            let totalHeight = video.offsetTop + video.height;
+            span.style.top = random(video.offsetTop + 80,totalHeight - 40) + "px";
+            span.style.color = "rgb(" + random(0,255) + "," + random(0,255) + "," + random(0,255) + ")"
+            container.appendChild(span);
+            let stop = setInterval(function (){
+                span.style.left = parseInt(span.style.left) - speed + "px"
+                if(parseInt(span.style.left) < 0){
+                    clearInterval(stop);
+                    container.removeChild(span)
+                }
+            })
+        }
+
+        sendBtn.onclick = run;
+
+        document.onkeydown = function (e){
+            if(e.keyCode === 13){
+                run()
+            }
+        }
+    </script>
+</body>
+</html>
