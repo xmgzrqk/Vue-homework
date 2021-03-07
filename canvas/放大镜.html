@@ -22,19 +22,23 @@
         let ctx1 = canvas1.getContext("2d")
         let ctx2 = canvas2.getContext("2d")
 
+        //创建图片地址，并在图片加载完成时将图片绘制到canvas1上
         let img = new Image()
         img.src = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1608781154,1940629457&fm=26&gp=0.jpg"
         img.onload = function (){
             ctx1.drawImage(img,0,0,800,600)
         }
 
+        //使canvas2中的图片更加平滑
         ctx2.imgSmoothingEnables = true
 
+        //事件监听，当鼠标在canvas1上移动时，canvas2上会出现相应鼠标位置的图片
         canvas1.addEventListener("mousemove",function (e){
             ctx2.clearRect(0,0,canvas2.width,canvas2.height)
             ctx2.drawImage(canvas1,e.offsetX,e.offsetY,150,150,0,0,400,400)
         })
 
+        //当鼠标移出canvas1时，此时清空canvas2画布
         canvas1.addEventListener("mouseleave",function (){
             ctx2.clearRect(0,0,canvas2.width,canvas2.height)
         })
