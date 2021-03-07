@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>放大镜</title>
+    <style>
+        /*canvas{*/
+        /*    background-color: pink;*/
+        /*}*/
+    </style>
+</head>
+<body>
+    <canvas class="can1" width="800" height="600"></canvas>
+    <canvas class="can2" width="400" height="400"></canvas>
+    <button>下载</button>
+    <script>
+        let canvas1 = document.querySelector(".can1")
+        let canvas2 = document.querySelector(".can2")
+        let ctx1 = canvas1.getContext("2d")
+        let ctx2 = canvas2.getContext("2d")
+
+        let img = new Image()
+        img.src = "https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1608781154,1940629457&fm=26&gp=0.jpg"
+        img.onload = function (){
+            ctx1.drawImage(img,0,0,800,600)
+        }
+
+        ctx2.imgSmoothingEnables = true
+
+        canvas1.addEventListener("mousemove",function (e){
+            ctx2.clearRect(0,0,canvas2.width,canvas2.height)
+            ctx2.drawImage(canvas1,e.offsetX,e.offsetY,150,150,0,0,400,400)
+        })
+
+        canvas1.addEventListener("mouseleave",function (){
+            ctx2.clearRect(0,0,canvas2.width,canvas2.height)
+        })
+
+        document.querySelector("button").addEventListener("click",function (){
+            let base64Img = canvas1.toDataURL("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1608781154,1940629457&fm=26&gp=0.jpg",1)
+            let oA = document.createElement("a");
+            oA.href = base64Img
+            oA.download = "海贼王"
+            oA.click()
+        })
+    </script>
+</body>
+</html>
